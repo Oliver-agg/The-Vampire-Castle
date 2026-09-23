@@ -1,4 +1,4 @@
-**Game ide: The Vampire Castle**
+**Game idea: The Vampire Castle**
 
 * **Theme:** The Vampire Castle  
 * **Goal:** Save your friend being held hostage by a vampire in the room the furthest away in the castle  
