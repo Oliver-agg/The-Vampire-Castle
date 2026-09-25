@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace The_Vampire_Castle
+﻿class Rewards
 {
-    internal class Rewards
+      public string Name { get; private set; }
+      public string KeyFits { get; private set; }
+
+    public Rewards (string _name, string _keyfits)
     {
+        Name = _name;
+        KeyFits = _keyfits;
     }
+
 }

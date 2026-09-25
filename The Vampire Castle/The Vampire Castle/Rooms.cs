@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace The_Vampire_Castle
+﻿class Rooms
 {
-    internal class Rooms
-    {
-    }
+
+
+
+
+
+
+
+
+
+
 }
