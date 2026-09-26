@@ -8,7 +8,7 @@
                            │  
                 ┌───────────────────────────┐  
                 │      STEFAN'S ROOM        │  
-                │  Math question \+ Key \+    │  
+                │  Math question \+ Key \+  │  
                 │        Antidote           │  
                 └───────────────┬───────────┘  
                                 │ north  
@@ -17,7 +17,7 @@
                 │  
         ┌───────────────────────────┐  
         │       DAMON'S ROOM        │  
-        │     Math question \+ Key   │  
+        │     Math question \+ Key  │  
         └───────────────┬───────────┘  
                         │ north  
                         │  
@@ -25,7 +25,7 @@
                 │  
         ┌───────────────────────────┐  
         │       LESTAT'S ROOM       │  
-        │     Math question \+ Key   │  
+        │     Math question \+ Key  │  
         └───────────────┬───────────┘  
                         │ north  
                         │  
@@ -33,7 +33,7 @@
                 │  
         ┌───────────────────────────┐  
         │      CARMILLA'S ROOM      │  
-        │     Math question \+ Key   │  
+        │     Math question \+ Key  │  
         └───────────────┬───────────┘  
                         │ north  
                         │  
@@ -41,7 +41,7 @@
                 │  
         ┌───────────────────────────┐  
         │      DRACULA'S ROOM       │  
-        │     Math question \+ Key   │  
+        │     Math question \+ Key  │  
         └───────────────┬───────────┘  
                         │ north  
                         │  
@@ -50,6 +50,6 @@
         ┌───────────────────────────┐  
         │       THE HALLROOM        │  
         │  Instructions to the game │  
-        │   \+ Free key to Room 1    │  
+        │   \+ Free key to Room 1   │  
         └───────────────────────────┘
 
