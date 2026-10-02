@@ -19,43 +19,43 @@
         );
 
         Room room1 = new Room(
-            "Room 1",
+            "Room 1: Dracula's Chamber",
             "A damp stone chamber.",
-            new Vampire("Nosfera", "What is 3 + 4?", 7)
+            new Vampire("Dracula", "What is 3 + 4?", 7)
         );
 
         Room room2 = new Room(
-            "Room 2",
+            "Room 2: Carmilla's Room",
             "Cobwebs cover the corners.",
-            new Vampire("Orlok", "What is 9 - 2?", 7)
+            new Vampire("Carmilla", "What is 9 - 2?", 7)
         );
 
         Room room3 = new Room(
-            "Room 3",
+            "Room 3: Lestat's Room",
             "Candles flicker on the walls.",
-            new Vampire("Lilith", "What is 6 * 2?", 12)
+            new Vampire("Lestat", "What is 6 * 2?", 12)
         );
 
         Room room4 = new Room(
-            "Room 4",
+            "Room 4: Damon's Room",
             "A cold draft passes through.",
-            new Vampire("Mina", "What is 20 / 4?", 5)
+            new Vampire("Damon", "What is 20 / 4?", 5)
         );
 
         Room room5 = new Room(
-            "Room 5",
+            "Room 5: Stefan´s Room",
             "Bones are scattered on the floor.",
-            new Vampire("Vlad", "What is 8 + 8?", 16)
+            new Vampire("Stefan", "What is 8 + 8?", 16)
         );
 
         Room room6 = new Room(
-            "Room 6",
+            "Room 6: Elena's Room",
             "A locked cabinet stands in the corner.",
-            new Vampire("Carmilla", "What is 10 * 10?", 100)
+            new Vampire("Elena", "What is 10 * 10?", 100)
         );
 
         room7 = new Room(
-            "Room 7",
+            "Room 7: The Rescue Room",
             "Your friend lies weakly against the wall.",
             null
         );
