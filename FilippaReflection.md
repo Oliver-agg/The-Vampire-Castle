@@ -25,36 +25,29 @@ Samarbetet fungerade väldigt bra! Vi hade regelnbunda möten och pratade nästa
 
 ## Om du fick göra om det — vad hade du gjort annorlunda?
 
-Tänk på din lösning, din struktur, eller hur ni jobbade. Vad skulle du ändra?
+Om jag fick göra om projeketet hade jag velat börja med en ännu tydligare plan för hur alla klasser skulle se ut innan vi började koda, eftersom det nog hade sparat tid senare och gjort av vi slapp ändra strukturen flera gånger. 
+
+Jag tyckte om att vi satt i samma kodfil - det hjälpte oss undvika merge conflicts och gjorde att både kunna vara med och lära sig alla delar av koden, vilket jag tycker var av vikt eftersom det bara är vår andra inlämning och ville kunna förstå hela projektet.
+Men i efterhand inser jag även att det hade varit bra att åtminstonde testa att jobba i separata branches någon gång, just för att lära oss hantera merges och konflikter. Vi undvek det mest för att det kändes läskigt, men det är en färdighet man kommer behöva i framtiden, så det hade varit bra att prova det i liten skala. 
 
 ---
 
 ## Valfritt — arv och datastrukturer
 
-Om ni använde arv: varför valde ni den strukturen? Vilken `List<T>` (eller annan datastruktur) använde ni, och varför just den?
+Vi använde inte arv eftersom våra klasser hade tydliga och separata ansvar. Däremot använda vi `List<T>` på flera ställen: för Items och NPC:er i Room, för inventory i Player och för dialoger i NPC-klassen. `List<T>` passade bra eftersom antalet objekt varierar och vi behövde kunna lägga till och ta bort element dynamiskt.
 
 ---
 
 ## VG — Motivering
-
-Fyll i det här avsnittet om du siktar på VG. Lämna tomt = G-bedömning.
-
-Svara på frågorna som hör till ditt projekt och dina VG-val. Radera resten.
-
-### Skogsäventyret
-
-- Vilken datastruktur valde ni för vapensortimentet och varför?
-- Hur sorterade ni monstren i arenan?
-- Hade ni kunnat lösa arenan utan arv?
-
-### Havsforskarna
-
-- Vilken VG-utbyggnad valde ni och varför just den?
-- Vad är den tekniskt svåraste delen av er lösning?
-- Hade ni kunnat lösa det utan `List<T>`?
 
 ### Dungeon Crawler
 
 - Vilka VG-utbyggnader valde ni och varför?
 - Motivera era datastrukturval (`string` som nyckel, `List<string>` för dialog, valt sparformat).
 - Vad hade en annan struktur gett er?
+
+Vi valde NPC-utbyggnaden. Varje spelrum har en vampyr som stället en mattefråga, och spelaren måste svara rätt för att få en nyckel och gå vidare. I sista spelrummet får man även en antidote som behövs för att rädda vännen och därmed vinna spelet. Vi valde detta eftersom det gav spelet en tydlig progrression och ett moment av "risk" - fel svarar betyder att du inte kan gå vidare. Vi la även till vanliga NPC:er (Ghost och Prisoner) för att skapa mer atmosfär och interaktion.
+
+Vi använde Dictionary<string, Room> för utgångar eftersom det gör navigationen flexibel och lätt att utöka. Vi använde List<Item> för både rumsföremål coh spelarens inventory eftersom antalet items varierar och List<T> gör det enkelt att lägga till och ta bort. För dialog använde vi List<string> eftersom NPC:erna ska kunna gå igenom sina repliker i ordning och loopa tillbaka när de når slutet. Vi valde att använda string som nyckel för riktningar (north, south) eftersom det är lätt att läsa och lätt att tolka i input-systemet. 
+
+Ett alternativ hade varit att använda enum för riktningar eller arv för NPC-typer men jag anser att vår lösning blev enklare och tydligare, samt som det bättre passade projektets omfattning.
