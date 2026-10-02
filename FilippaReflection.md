@@ -8,25 +8,18 @@
 
 **Datum:** 2 Oktober 2026
 
----
-
-Den här reflektionen är obligatorisk och lämnas in individuellt — även om projektet gjordes i grupp.
-
-Det finns inga rätta eller fel svar. Skriv vad du faktiskt tyckte och upplevde.
-
-Kort och ärligt räcker — några meningar per fråga.
 
 ---
 
 ## Vad var svårast att lösa?
 
-Var fastnade du? Vad tog längre tid än du trodde — och hur kom du vidare?
+Det svåraste att lösa tyckte jag var att få alla klasser att samarbeta utan att tappa bort sig i logiken. Jag fastnade flera gånger i hur rummen skulle kopplas ihop, hur NPC-systemet skulle fungera och hur input-hanteringen skulle byggas så att spelet inte kraschade vid fel input. Det tog längre tid än jag trodde att förstå hur Game-klassen skulle styra allt, men jag kom vidare genom att bryta ner problemet i mindre delar och testa funktionerna separat. När jag väl insåg hur Player, Room och Vampire hängde ihop blev allt mycket tydligare.
 
 ---
 
 ## Hur fungerade samarbetet i gruppen?
 
-Vad fungerade bra? Vad var svårt? Hur delade ni upp arbetet? Hur använde ni Git tillsammans (branches, `merge`, `pull requests`)?
+Samarbetet fungerade väldigt bra! Vi hade regelnbunda möten och pratade nästan alltid via Discord där vi tog gemensamma beslut om struktur, funktioner och spelide. Kodningen i sig skedde främst i Olivers Visual Studio (+ skärmdelning via Discord) men vi satt tillsammans och diskuterade varje del innan vi skrev den. Jag la själv främst till saker via GitHub genom att lägga till .md-filer, bilder och visuella ideer med hjälp av Copilot. Vi jobbade inte med branches och pull requests på ett avancerat sätt, utan mer som ett gemensamt utvecklingsflöde där vi hela tiden kommunicerade och tog beslut ihop.
 
 ---
 
