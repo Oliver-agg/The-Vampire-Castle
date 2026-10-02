@@ -43,7 +43,7 @@
         );
 
         Room room5 = new Room(
-            "Room 5: Stefan´s Room",
+            "Room 5: Stefan's Room",
             "Bones are scattered on the floor.",
             new Vampire("Stefan", "What is 8 + 8?", 16)
         );
@@ -151,19 +151,86 @@
         player = new Player(hallway);
     }
 
+
+    private static void InitTheme()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.Title = "Vampire Castle";
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.Clear();
+    }
+
+  
+    private static void Say(string text, ConsoleColor color)
+    {
+        Console.ForegroundColor = color;
+        Console.WriteLine(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+
+
+    private static void Label(string label, string value)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.Write(label + " ");
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine(value);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+
+
+    private static void Prompt(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.Write(text + " ");
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
+  
+    private static void Box(string text, ConsoleColor color)
+    {
+        int width = Math.Max(text.Length + 6, 36);
+        int left = (width - text.Length) / 2;
+        string middle = new string(' ', left) + text;
+
+        Console.ForegroundColor = color;
+        Console.WriteLine("╔" + new string('═', width) + "╗");
+        Console.WriteLine("║" + middle.PadRight(width) + "║");
+        Console.WriteLine("╚" + new string('═', width) + "╝");
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+
+   
+    private static void VampireFace()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(@"        .-------.");
+        Console.WriteLine(@"       /  _   _  \");
+        Console.WriteLine(@"      |  (o) (o)  |");
+        Console.WriteLine(@"      |     ^     |");
+        Console.WriteLine(@"      |   \/^^\/  |");
+        Console.WriteLine(@"       \   '--'  /");
+        Console.WriteLine(@"        '-.___.-'");
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+
+ //GAME
+
     public void Start()
     {
-        Console.WriteLine("================================");
-        Console.WriteLine("       VAMPIRE CASTLE");
-        Console.WriteLine("================================");
+        InitTheme();
+
+        Box("V A M P I R E   C A S T L E", ConsoleColor.Red);
         Console.WriteLine();
 
-        Console.WriteLine(
-            "Your friend is dying. Find the antidote and bring it to Room 7."
+        Say(
+            "Your friend is dying. Find the antidote and bring it to Room 7.",
+            ConsoleColor.Gray
         );
 
         Console.WriteLine();
-        Console.WriteLine("Type 'help' to see the available commands.");
+        Say("Type 'help' to see the available commands.", ConsoleColor.DarkGray);
         Console.WriteLine();
 
         while (playing)
@@ -188,7 +255,7 @@
                 break;
             }
 
-            Console.Write("> ");
+            Prompt(">");
             string input = Console.ReadLine();
 
             InterpretCommand(input);
@@ -200,40 +267,33 @@
     private void ShowRoom()
     {
         Console.WriteLine();
-        Console.WriteLine("--- " + player.CurrentRoom.Name + " ---");
-        Console.WriteLine(player.CurrentRoom.Description);
+        Box(player.CurrentRoom.Name, ConsoleColor.DarkRed);
+        Say(player.CurrentRoom.Description, ConsoleColor.Gray);
 
-        Console.Write("Exits: ");
-
-        foreach (string direction in player.CurrentRoom.Exits.Keys)
-        {
-            Console.Write(direction + " ");
-        }
-
-        Console.WriteLine();
+        Label("Exits:", string.Join(", ", player.CurrentRoom.Exits.Keys));
 
         if (player.CurrentRoom.Items.Count > 0)
         {
-            Console.Write("Items: ");
+            List<string> itemNames = new List<string>();
 
             foreach (Item item in player.CurrentRoom.Items)
             {
-                Console.Write(item.Name + " ");
+                itemNames.Add(item.Name);
             }
 
-            Console.WriteLine();
+            Label("Items:", string.Join(", ", itemNames));
         }
 
         if (player.CurrentRoom.Npcs.Count > 0)
         {
-            Console.Write("People here: ");
+            List<string> npcNames = new List<string>();
 
             foreach (NPC npc in player.CurrentRoom.Npcs)
             {
-                Console.Write(npc.Name + " ");
+                npcNames.Add(npc.Name);
             }
 
-            Console.WriteLine();
+            Label("People here:", string.Join(", ", npcNames));
         }
     }
 
@@ -242,23 +302,30 @@
         Vampire vampire = player.CurrentRoom.Guard;
 
         Console.WriteLine();
-        Console.WriteLine(
-            vampire.Name + " blocks your way!"
-        );
+        VampireFace();
+        Say(vampire.Name + " blocks your way!", ConsoleColor.Red);
 
         bool passed = false;
 
         while (!passed)
         {
-            Console.WriteLine(vampire.Question);
-            Console.Write("Answer: ");
+            Say(vampire.Question, ConsoleColor.Yellow);
+            Prompt("Answer:");
 
-            int guess = int.Parse(Console.ReadLine());
+            string typed = Console.ReadLine();
+            int guess;
+
+            if (!int.TryParse(typed, out guess))
+            {
+                Say("Type a number.", ConsoleColor.DarkGray);
+                continue;
+            }
 
             if (vampire.AskQuestion(guess))
             {
-                Console.WriteLine(
-                    vampire.Name + ": Correct. You may pass."
+                Say(
+                    vampire.Name + ": Correct. You may pass.",
+                    ConsoleColor.Green
                 );
 
                 player.CurrentRoom.DefeatGuard();
@@ -266,8 +333,9 @@
             }
             else
             {
-                Console.WriteLine(
-                    vampire.Name + ": Wrong! Try again."
+                Say(
+                    vampire.Name + ": Wrong! Try again.",
+                    ConsoleColor.Red
                 );
             }
         }
@@ -277,27 +345,37 @@
     {
         if (player.CurrentRoom == room7)
         {
+            Console.WriteLine();
+
             if (player.HasItem("Antidote"))
             {
-                Console.WriteLine();
-                Console.WriteLine(
-                    "You give the antidote to your friend."
+                Say(
+                    "You give the antidote to your friend.",
+                    ConsoleColor.Gray
                 );
 
-                Console.WriteLine(
-                    "They recover. You win!"
+                Say(
+                    "They recover. You win!",
+                    ConsoleColor.Green
                 );
+
+                Console.WriteLine();
+                Box("YOUR FRIEND IS SAVED!", ConsoleColor.Green);
             }
             else
             {
-                Console.WriteLine();
-                Console.WriteLine(
-                    "You have nothing to give your friend..."
+                Say(
+                    "You have nothing to give your friend...",
+                    ConsoleColor.Gray
                 );
 
-                Console.WriteLine(
-                    "Game over."
+                Say(
+                    "Game over.",
+                    ConsoleColor.Red
                 );
+
+                Console.WriteLine();
+                Box("G A M E   O V E R", ConsoleColor.Red);
             }
 
             playing = false;
@@ -320,7 +398,7 @@
         }
         else if (input == "quit")
         {
-            Console.WriteLine("The game ends. Goodbye!");
+            Say("The game ends. Goodbye!", ConsoleColor.DarkGray);
             playing = false;
         }
         else if (input == "go north")
@@ -349,7 +427,7 @@
         }
         else
         {
-            Console.WriteLine("I don't understand that command.");
+            Say("I don't understand that command.", ConsoleColor.DarkGray);
         }
     }
 
@@ -363,7 +441,7 @@
         }
         else
         {
-            Console.WriteLine("You can't go that way.");
+            Say("You can't go that way.", ConsoleColor.DarkGray);
         }
     }
 
@@ -371,18 +449,18 @@
     {
         if (player.CurrentRoom.Items.Count == 0)
         {
-            Console.WriteLine("There are no items here.");
+            Say("There are no items here.", ConsoleColor.DarkGray);
             return;
         }
 
-        Console.WriteLine("What do you want to take?");
+        Say("What do you want to take?", ConsoleColor.Gray);
 
         foreach (Item item in player.CurrentRoom.Items)
         {
-            Console.WriteLine("- " + item.Name);
+            Say("- " + item.Name, ConsoleColor.White);
         }
 
-        Console.Write("> ");
+        Prompt(">");
         string itemName = Console.ReadLine();
 
         Item foundItem = null;
@@ -399,13 +477,14 @@
         {
             player.TakeItem(foundItem);
 
-            Console.WriteLine(
-                "You take the " + foundItem.Name + "."
+            Say(
+                "You take the " + foundItem.Name + ".",
+                ConsoleColor.Green
             );
         }
         else
         {
-            Console.WriteLine("That item is not here.");
+            Say("That item is not here.", ConsoleColor.DarkGray);
         }
     }
 
@@ -413,18 +492,18 @@
     {
         if (player.CurrentRoom.Npcs.Count == 0)
         {
-            Console.WriteLine("There is nobody here to talk to.");
+            Say("There is nobody here to talk to.", ConsoleColor.DarkGray);
             return;
         }
 
-        Console.WriteLine("Who do you want to talk to?");
+        Say("Who do you want to talk to?", ConsoleColor.Gray);
 
         foreach (NPC npc in player.CurrentRoom.Npcs)
         {
-            Console.WriteLine("- " + npc.Name);
+            Say("- " + npc.Name, ConsoleColor.White);
         }
 
-        Console.Write("> ");
+        Prompt(">");
         string name = Console.ReadLine();
 
         NPC foundNpc = null;
@@ -439,29 +518,30 @@
 
         if (foundNpc != null)
         {
-            Console.WriteLine(
-                foundNpc.Name + ": " + foundNpc.NextLine()
+            Say(
+                foundNpc.Name + ": " + foundNpc.NextLine(),
+                ConsoleColor.Cyan
             );
         }
         else
         {
-            Console.WriteLine("That person is not here.");
+            Say("That person is not here.", ConsoleColor.DarkGray);
         }
     }
 
     private void ShowHelp()
     {
         Console.WriteLine();
-        Console.WriteLine("Available commands:");
-        Console.WriteLine("go north");
-        Console.WriteLine("go south");
-        Console.WriteLine("go east");
-        Console.WriteLine("go west");
-        Console.WriteLine("take");
-        Console.WriteLine("look");
-        Console.WriteLine("inventory");
-        Console.WriteLine("talk");
-        Console.WriteLine("help");
-        Console.WriteLine("quit");
+        Say("Available commands:", ConsoleColor.Yellow);
+        Say("go north", ConsoleColor.DarkYellow);
+        Say("go south", ConsoleColor.DarkYellow);
+        Say("go east", ConsoleColor.DarkYellow);
+        Say("go west", ConsoleColor.DarkYellow);
+        Say("take", ConsoleColor.DarkYellow);
+        Say("look", ConsoleColor.DarkYellow);
+        Say("inventory", ConsoleColor.DarkYellow);
+        Say("talk", ConsoleColor.DarkYellow);
+        Say("help", ConsoleColor.DarkYellow);
+        Say("quit", ConsoleColor.DarkYellow);
     }
 }
