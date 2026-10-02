@@ -70,7 +70,7 @@ Vi arbetade tillsammans genom regelbundna möten under projektets gång och sama
 
 Den faktiska kodningen skedde huvudsakligen i Olivers Visual Studio-miljö, där vi satt tillsammans och tog beslut om struktur, logik och funktioner. Detta för att båda skulle kunna tycka och tänka om beslut, undvika merge konflikter, men framförallt för att båda fortsätt skulle kunna lära sig alla delar (fortsatt användning av det vi känner oss trygga i och lära oss nya saker) av projektet.
 
-Vid sidan av detta använde Filippa även GitHuv för att lägga till kompletterande filer, som .md-dokument och bilder/visualisering av speliden med hjälp av Copilot.
+Vid sidan av detta använde Filippa även GitHub för att lägga till kompletterande filer, som .md-dokument och bilder/visualisering av speliden med hjälp av Copilot.
 
 Git användes alltså främst för versionlagring och dokumentation, medan kodningen skedde i ett gemensamt utvecklingsflöde där båda deltog i skapandet av spelet och designbeslut. 
 
